@@ -1,5 +1,6 @@
 body {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Raleway', sans-serif;
+	background: url('images/ricepaper2.png');
 }
 
 .mainArticle {
@@ -9,4 +10,40 @@ body {
 	display: none;
 	line-height: 1.6;
 	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
+}
+
+#idea-prompt {
+	font-size: 50px;
+	text-align: center;
+}
+
+.choose {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.idea {
+	width: 300px;
+	height: 300px;
+	border-radius: 50%;
+	border: none;
+	margin: 5px;
+}
+
+#liberal {
+	background-color: #0C1CBB;
+	color: #FFFFFF;
+	font-size: 30px;
+}
+
+#moderate {
+	color: #FFFFFF;
+	font-size: 30px;
+}
+
+#conservative {
+	background-color: #E74C3C;
+	color: #FFFFFF;
+	font-size: 30px;
 }

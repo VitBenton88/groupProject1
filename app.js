@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-	$('.mainArticle').show(200);//load div that contains article
-
   // Initialize Firebase
 	var config = {
 	apiKey: "AIzaSyCgFLqC-UD_Y_hOXIgktmVzEz-R-gg7Tyo",
@@ -17,31 +15,34 @@ $(document).ready(function() {
 
 //---------FIREBASE END ---------------
 
-nyTimes = {
-	name: "The New York Times",
-	apiKey: 'e602416e1df44091b3750704a4b7f198',
-	article: '',
+$('body').on('click','.idea', function(){
+	$('.mainArticle').show(200);//load div that contains article
+});
 
-	ajaxCall: function(searchQuery){
-		return ('https://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + searchQuery;)
-	},
+var ideologies = ["Liberal", "Moderate", "Conservative"];
 
-};
+function renderButtons() {
+	$(".button-container").empty()
 
-	$.ajax({//jquery ajax method
-	      	url: queryURL,//push previously stored API url
-	      	method: "GET"
-	    	}).done(function(response) {
-	    		console.log(buttonKeyword);//log current keyword
-	    		for (i=0; i<10; i++){//loop through API object to get 20 URLS (10 stills and 10 animated)
-	    			var gifSrc = response.data[i].images.fixed_height_still.url;//capture still URL
-	    			var gifAltSrc = response.data[i].images.fixed_height.url;//capture animated URL
-	    			var gifRating = response.data[i].rating;//capture rating of gif
-	      			$('.gifBox').append("<div class='col-md-6'><img src=" + gifSrc + " data-alt-src=" + gifAltSrc + "><p class='rating'>Rating: " + gifRating + "</p></div>");//append new rows each with an <img> with a src attr that is the still URL and a data-* attr that is the animated URL. Also, print the gif's rating below it in <p>
-	      		};
-	    	});
-	});//function that generates gifs to page when keyword <button> is clicked.
-};
+	$(".button-container").append("<button class='idea' id='liberal'>" + ideologies[0] + "</button><button class='idea' id='moderate'>" + ideologies[1] + "</button><button class='idea' id='conservative'>" + ideologies[2] + "</button>");
+
+	$(".choose").hide();
+	$(".idea").hide();
+}
+
+function renderModal() {
+	$('#infoModal').modal('toggle');
+	$('#infoModal').on('hidden.bs.modal', function(){
+		$(".choose").fadeIn();
+		$(".idea").fadeIn();
+	});
+
+};	
+
+renderModal();
+renderButtons();
+
+
 
 //----------------------------------------------------------------END OF SCRIPT	
 });
