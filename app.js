@@ -46,18 +46,18 @@ $('body').on('click','.idea', function(){
 
 //hover effect on idea bubbles ------
 
-$('body').on('mouseenter','.idea', function(){
+$('body').on('mouseenter','.idea', 1000, function(){
 	$(this).animate({
-        width: "330px",
-        height: "330px",
+        width: "290px",
+        height: "290px",
         color: "black",
     });
 });
 
-$('body').on('mouseout','.idea', function(){
+$('body').on('mouseout','.idea', 1000, function(){
 	$(this).animate({
-        width: "300px",
-        height: "300px",
+        width: "280px",
+        height: "280px",
         color: "white",
 
     });
@@ -68,6 +68,9 @@ $('body').on('mouseout','.idea', function(){
 $('.finishedReadingButton').click(function (){//when the finished reading button is clicked
 	$('#articleText').hide(200);//hide three idea bubbles
 	$('.finishedReadingButton').hide();
+
+
+
 });
 
 
