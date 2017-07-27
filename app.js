@@ -42,7 +42,7 @@ $('#likerScale').hide();
 $('body').on('click','.idea', function(){
 	$('.mainArticle').show(200);//load div that contains article
 	$(".choose").remove();
-	$(".idea").detach();
+	$(".idea").hide(50);
 });
 
 //hover effect on idea bubbles ------

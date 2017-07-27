@@ -51,3 +51,66 @@ body {
 .button-container {
 	text-align: center;
 }
+
+.statement {
+	display: block;
+	font-size: 16px;
+	padding: 30px 0 0 4.25%;
+	margin-bottom: 20px;
+}
+
+.likert {
+	list-style: none;
+	width: 100%;
+	margin: 0;
+	padding: 0 0 35px;
+	display: block;
+}
+
+form .likert:before {
+	content: '';
+	position: relative;
+	top: 15px;
+	left: 10%;
+	display: block;
+	background: #efefef;
+	height: 4px;
+	width: 78%;
+}
+
+.likert li {
+	display: inline-block;
+	width: 19%;
+	text-align: center;
+	vertical-align: top;
+}
+
+.likert li input[type=radio] {
+	display: block;
+	position: relative;
+	top: 0;
+	left: 50%;
+	margin-left: -6px;
+}
+
+.likert li label {
+	width: 100%;
+}
+
+form .buttons {
+	margin: 30px 0;
+	padding:0 4.25%;
+	text-align: right;
+}
+
+form .buttons button {
+	padding: 5px 10px;
+	background-color: #67ab49;
+	border: 0;
+	border-radius: 3px;
+}
+
+
+
+
+
