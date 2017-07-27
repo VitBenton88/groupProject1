@@ -1,5 +1,3 @@
-$(document).ready(function() {
-
   // Initialize Firebase
 	var config = {
 	apiKey: "AIzaSyCgFLqC-UD_Y_hOXIgktmVzEz-R-gg7Tyo",
@@ -15,9 +13,6 @@ $(document).ready(function() {
 
 //---------FIREBASE END ---------------
 
-$('body').on('click','.idea', function(){
-	$('.mainArticle').show(200);//load div that contains article
-});
 
 var ideologies = ["Liberal", "Moderate", "Conservative"];
 
@@ -28,6 +23,7 @@ function renderButtons() {
 
 	$(".choose").hide();
 	$(".idea").hide();
+	$('.mainArticle').hide();
 }
 
 function renderModal() {
@@ -42,7 +38,12 @@ function renderModal() {
 renderModal();
 renderButtons();
 
+$('body').on('click','.idea', function(){
+	$('.mainArticle').show(200);//load div that contains article
+	$(".choose").remove();
+	$(".idea").detach();
+});
+
 
 
 //----------------------------------------------------------------END OF SCRIPT	
-});
