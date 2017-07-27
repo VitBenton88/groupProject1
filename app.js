@@ -14,12 +14,6 @@
 //---------FIREBASE END ---------------
 
 
-$('body').on('click','.idea', function(){
-	$('.mainArticle').show(200);//load div that contains article
-	$('.idea').remove(200);//hide three idea bubbles
-	$('#idea-prompt').detach(200);//hide three idea bubbles
-});
-
 $('.finishedReadingButton').click(function (){
 	$('#articleText').hide(200);//hide three idea bubbles
 });
@@ -50,10 +44,11 @@ renderModal();
 renderButtons();
 
 $('body').on('click','.idea', function(){
-	$('.mainArticle').hide(200);//load div that contains article
+	$('.mainArticle').show(200);//load div that contains article
 	$(".choose").remove();
 	$(".idea").detach();
 });
+
 
 
 
