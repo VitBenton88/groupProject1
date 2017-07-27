@@ -1,5 +1,3 @@
-$(document).ready(function() {
-
   // Initialize Firebase
 	var config = {
 	apiKey: "AIzaSyCgFLqC-UD_Y_hOXIgktmVzEz-R-gg7Tyo",
@@ -15,15 +13,17 @@ $(document).ready(function() {
 
 //---------FIREBASE END ---------------
 
+
 $('body').on('click','.idea', function(){
 	$('.mainArticle').show(200);//load div that contains article
-	$('.idea').hide(200);//hide three idea bubbles
-	$('#idea-prompt').hide(200);//hide three idea bubbles
+	$('.idea').remove(200);//hide three idea bubbles
+	$('#idea-prompt').detach(200);//hide three idea bubbles
 });
 
 $('.finishedReadingButton').click(function (){
 	$('#articleText').hide(200);//hide three idea bubbles
 });
+
 
 var ideologies = ["Liberal", "Moderate", "Conservative"];
 
@@ -34,6 +34,7 @@ function renderButtons() {
 
 	$(".choose").hide();
 	$(".idea").hide();
+	$('.mainArticle').hide();
 }
 
 function renderModal() {
@@ -48,7 +49,12 @@ function renderModal() {
 renderModal();
 renderButtons();
 
+$('body').on('click','.idea', function(){
+	$('.mainArticle').hide(200);//load div that contains article
+	$(".choose").remove();
+	$(".idea").detach();
+});
+
 
 
 //----------------------------------------------------------------END OF SCRIPT	
-});
