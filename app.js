@@ -14,11 +14,6 @@
 //---------FIREBASE END ---------------
 
 
-$('.finishedReadingButton').click(function (){
-	$('#articleText').hide(200);//hide three idea bubbles
-});
-
-
 var ideologies = ["Liberal", "Moderate", "Conservative"];
 
 function renderButtons() {
@@ -47,6 +42,11 @@ $('body').on('click','.idea', function(){
 	$('.mainArticle').show(200);//load div that contains article
 	$(".choose").remove();
 	$(".idea").detach();
+});
+
+$('.finishedReadingButton').click(function (){
+	$('#articleText').hide(200);//hide three idea bubbles
+	$('.finishedReadingButton').hide();
 });
 
 
