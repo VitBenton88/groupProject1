@@ -14,6 +14,11 @@
 //---------FIREBASE END ---------------
 
 
+$('.finishedReadingButton').click(function (){
+	$('#articleText').hide(200);//hide three idea bubbles
+});
+
+
 var ideologies = ["Liberal", "Moderate", "Conservative"];
 
 function renderButtons() {
