@@ -44,7 +44,28 @@ $('body').on('click','.idea', function(){
 	$(".idea").detach();
 });
 
-$('.finishedReadingButton').click(function (){
+//hover effect on idea bubbles ------
+
+$('body').on('mouseenter','.idea', function(){
+	$(this).animate({
+        width: "330px",
+        height: "330px",
+        color: "black",
+    });
+});
+
+$('body').on('mouseout','.idea', function(){
+	$(this).animate({
+        width: "300px",
+        height: "300px",
+        color: "white",
+
+    });
+});
+
+//------------------------
+
+$('.finishedReadingButton').click(function (){//when the finished reading button is clicked
 	$('#articleText').hide(200);//hide three idea bubbles
 	$('.finishedReadingButton').hide();
 });
