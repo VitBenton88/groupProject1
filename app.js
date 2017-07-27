@@ -37,6 +37,7 @@ function renderModal() {
 
 renderModal();
 renderButtons();
+$('#likerScale').hide();
 
 $('body').on('click','.idea', function(){
 	$('.mainArticle').show(200);//load div that contains article
@@ -68,9 +69,7 @@ $('body').on('mouseout','.idea', 1000, function(){
 $('.finishedReadingButton').click(function (){//when the finished reading button is clicked
 	$('#articleText').hide(200);//hide three idea bubbles
 	$('.finishedReadingButton').hide();
-
-
-
+	$('#likerScale').show();
 });
 
 
