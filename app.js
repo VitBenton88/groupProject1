@@ -28,6 +28,7 @@ function renderButtons() {
 
 function renderModal() {
 	$('#infoModal').modal('toggle');
+
 	$('#infoModal').on('hidden.bs.modal', function(){
 		$(".choose").fadeIn();
 		$(".idea").fadeIn();
@@ -35,14 +36,38 @@ function renderModal() {
 
 };	
 
+function renderQuestionButtons(){
+	$(".question2-buttons").append("<p class='statement'>Questions</p>");
+	$(".question2-buttons").append("<button class='question2-answer' id='liberal-lean'>" + ideologies[0] + "</button><button class='question2-answer' id='moderate-lean'>" + ideologies[1] + "</button><button class='question2-answer' id='conservative-lean'>" + ideologies[2] + "</button>");
+	$(".question2-buttons").show();
+
+		$('body').on('mouseenter','.question2-answer', 1000, function(){
+		$(this).animate({
+        	width: "160px",
+        	height: "160px",
+        	color: "black",
+    	});
+	});
+
+	$('body').on('mouseout','.question2-answer', 1000, function(){
+		$(this).animate({
+        	width: "150px",
+        	height: "150px",
+        	color: "white",
+
+    	});
+	});
+};
+
 renderModal();
 renderButtons();
-$('#likerScale').hide();
+$('#likertScale').hide();
+$(".question2-buttons").hide();
 
 $('body').on('click','.idea', function(){
 	$('.mainArticle').show(200);//load div that contains article
 	$(".choose").remove();
-	$(".idea").hide(50);
+	$(".idea").detach();
 });
 
 //hover effect on idea bubbles ------
@@ -65,11 +90,37 @@ $('body').on('mouseout','.idea', 1000, function(){
 });
 
 //------------------------
+$('body').on('mouseenter','.finishedReadingButton', 1000, function(){
+	$(this).animate({
+        width: "110px",
+        height: "110px",
+        color: "black",
+
+    });
+});
+$('body').on('mouseout','.finishedReadingButton', 1000, function(){
+	$(this).animate({
+        width: "100px",
+        height: "100px",
+        color: "black",
+
+    });
+});
 
 $('.finishedReadingButton').click(function (){//when the finished reading button is clicked
 	$('#articleText').hide(200);//hide three idea bubbles
 	$('.finishedReadingButton').hide();
-	$('#likerScale').show();
+	$('#likertScale').show();
+	renderQuestionButtons();
+});
+
+$(".question2-buttons").click(function() {
+	$(".question2-buttons").empty();
+	
+	$(".question2-buttons").hide();
+	$("#likertScale").hide();
+	$("#articleText").show();
+	$(".finishedReadingButton").show();
 });
 
 
