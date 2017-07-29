@@ -37,7 +37,6 @@ function renderModal() {
 };	
 
 function renderQuestionButtons(){
-	$(".question2-buttons").append("<p class='statement'>Questions</p>");
 	$(".question2-buttons").append("<button class='question2-answer' id='liberal-lean'>" + ideologies[0] + "</button><button class='question2-answer' id='moderate-lean'>" + ideologies[1] + "</button><button class='question2-answer' id='conservative-lean'>" + ideologies[2] + "</button>");
 	$(".question2-buttons").show();
 
@@ -109,6 +108,7 @@ $('body').on('mouseout','.finishedReadingButton', 1000, function(){
 
 $('.finishedReadingButton').click(function (){//when the finished reading button is clicked
 	$('#articleText').hide(200);//hide three idea bubbles
+	$(".questionTitle").show();//show 'What is, in your opinion, the tone of this article?' text
 	$('.finishedReadingButton').hide();
 	$('#likertScale').show();
 	renderQuestionButtons();
@@ -116,12 +116,14 @@ $('.finishedReadingButton').click(function (){//when the finished reading button
 
 $(".question2-buttons").click(function() {
 	$(".question2-buttons").empty();
-	
+	$(".questionTitle").hide();//hide 'What is, in your opinion, the tone of this article?' text
 	$(".question2-buttons").hide();
 	$("#likertScale").hide();
 	$("#articleText").show();
 	$(".finishedReadingButton").show();
 });
+
+
 
 
 

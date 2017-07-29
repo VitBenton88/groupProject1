@@ -13,7 +13,7 @@ body {
 	box-shadow: 5px 5px 15px #888888;
 	padding: 20px;
 	display: none;
-	line-height: 1.6;
+	line-height: 35px;
 	font-size: 16px;
 	font-family: 'Merriweather', serif;
 	background-color: white;
@@ -142,6 +142,12 @@ form .buttons button {
 	margin: 5px;
 }
 
+.questionTitle {
+	text-align: center;
+	display: none;
+	font-family: 'Raleway', sans-serif;
+}
+
 #liberal-lean {
 	background-color: #0C1CBB;
 	color: #FFFFFF;
@@ -158,6 +164,4 @@ form .buttons button {
 	color: #FFFFFF;
 	font-size: 20px;
 }
-
-
 
