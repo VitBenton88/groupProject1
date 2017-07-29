@@ -34,6 +34,32 @@
 	
 	<div class="container">
 
+		<div class="row">
+			<div class="col-lg-offset-2 col-lg-8 chartBox">
+
+				<div id="chart1Wrap">
+					<div id="publication1"></div>
+					<canvas id="chart1"></canvas>
+				</div>
+
+				<div id="chart2Wrap">
+				<div id="publication2"></div>
+					<canvas id="chart2"></canvas>
+				</div>
+
+				<div id="chart3Wrap">
+				<div id="publication3"></div>
+					<canvas id="chart3"></canvas>
+				</div>
+
+				<div class="col-lg-offset-1 col-lg-8">
+					<button id="RightWing">Conservative Data</button>
+					<button id="Centrist">Neutral Data</button>
+				</div>
+
+			</div>
+
+		</div>
 	
 	</div>
 
@@ -49,5 +75,144 @@
 	<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
 	<!--LOCAL JS -->
 	<script src="app.js"></script>
+	<!--CHART.JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+<script>
+
+$(document).ready(function() {
+
+			//CHART ---------------------------------------------------
+		var ctx = document.getElementById("myChart").getContext('2d');
+		var myDoughnutChart = new Chart(ctx, {
+		    type: 'doughnut',
+		    data: {
+		        labels: ["Liberal", "Conservative", "Neutral"],
+		        datasets: {
+		        //dataset 1:
+		        	liberal: [{
+		            label: '# of Votes',
+		            data: [50, 5, 15],
+		            backgroundColor: [
+		                'rgba(127, 127, 255, 255)',
+		                'rgba(255, 0, 0, 255)',
+		                'rgba(211, 211, 211, 255)',
+		            ],
+
+		            borderColor: [
+		                'rgba(127, 127, 255, 255)',
+		                'rgba(255, 0, 0, 255)',
+		                'rgba(211, 211, 211, 255)',
+		            ],
+		            borderWidth: 1,
+		        }],
+		            //dataset 2:
+		            neutral: [{
+		            label: '# of Votes',
+		            data: [50, 5, 15],
+		            backgroundColor: [
+		                'rgba(127, 127, 255, 255)',
+		                'rgba(255, 0, 0, 255)',
+		                'rgba(211, 211, 211, 255)',
+		            ],
+
+		            borderColor: [
+		                'rgba(127, 127, 255, 255)',
+		                'rgba(255, 0, 0, 255)',
+		                'rgba(211, 211, 211, 255)',
+		            ],
+		            borderWidth: 1,
+		        }],
+		            //dataset 3:
+		            conservative: [{
+		            label: '# of Votes',
+		            data: [50, 5, 15],
+		            backgroundColor: [
+		                'rgba(127, 127, 255, 255)',
+		                'rgba(255, 0, 0, 255)',
+		                'rgba(211, 211, 211, 255)',
+		            ],
+
+		            borderColor: [
+		                'rgba(127, 127, 255, 255)',
+		                'rgba(255, 0, 0, 255)',
+		                'rgba(211, 211, 211, 255)',
+		            ],
+		            borderWidth: 1,
+
+		        }]
+		      },
+		    },
+		    options: {
+		    	title: {
+		            display: true,
+		            text: 'Liberals Felt This Article Are Is ...',
+		        },
+		    }
+		});
+	//CHART END---------------------------------------------------
+
+	//everything below is not relevant since we're no longer working with embedded datasets :
+	var disableRightWingButton = false;
+	var disableNeutralWingButton = false;
+
+	function addRightWingData() {//adds data representing conservative votes
+		var newDataset = {
+            backgroundColor: [
+                'rgba(127, 127, 255, 255)',
+                'rgba(255, 0, 0, 255)',
+                'rgba(211, 211, 211, 255)',
+            ],
+            data: [10, 30, 50],
+            label: 'Conservative Data',
+        };
+
+        myDoughnutChart.data.datasets.push(newDataset);//push new data to chart's dataset
+        myDoughnutChart.update();//update chart
+	};
+
+	function addCentristData() {//adds data representing neutral votes
+		var newDataset = {
+            backgroundColor: [
+                'rgba(127, 127, 255, 255)',
+                'rgba(255, 0, 0, 255)',
+                'rgba(211, 211, 211, 255)',
+            ],
+            data: [20, 40, 90],
+            label: 'Centrist Data',
+        };
+
+        myDoughnutChart.data.datasets.push(newDataset);//push new data to chart's dataset
+        myDoughnutChart.update();//update chart
+	};
+
+	$('#RightWing').click(function(){
+		if (disableRightWingButton === false){
+			addRightWingData();
+			disableRightWingButton = true;
+		}
+
+		else {
+			return;
+		};
+	});
+
+	$('#Centrist').click(function(){
+		if (disableNeutralWingButton === false){
+			addCentristData();
+			disableNeutralWingButton = true;
+		}
+
+		else {
+			return;
+		};
+	});
+
+
+//----------------------------------------------------------------END OF SCRIPT	
+});
+</script>
+
+
 </body>
 </html>
