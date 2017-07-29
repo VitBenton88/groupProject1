@@ -19,9 +19,6 @@ body {
 	margin-top: 25px;
 }
 
-.navbar {
-	height: 75px;
-}
 
 .mainArticle {
 	box-shadow: 5px 5px 15px #888888;
@@ -179,4 +176,5 @@ form .buttons button {
 	color: #FFFFFF;
 	font-size: 20px;
 }
+
 

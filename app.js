@@ -117,11 +117,14 @@ $('.finishedReadingButton').click(function (){//when the finished reading button
 $(".question2-buttons").click(function() {
 	$(".question2-buttons").empty();
 	$(".questionTitle").hide();//hide 'What is, in your opinion, the tone of this article?' text
-	$(".question2-buttons").hide();
+	
 	$("#likertScale").hide();
 	$("#articleText").show();
 	$(".finishedReadingButton").show();
 });
+
+
+
 
 
 
