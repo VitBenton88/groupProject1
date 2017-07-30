@@ -16,6 +16,7 @@
 	
 	<div id="myChartWrap">
 		<canvas id="myChart"></canvas>
+		<button id="addDataset">Add Dataset</button>
 	</div>
 
 	<button>Button</button>
@@ -26,42 +27,113 @@
 $(document).ready(function() {
 
 	//CHART ---------------------------------------------------
-var ctx = document.getElementById("myChart").getContext('2d');
-var myDoughnutChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ["Votes", "All Liberals"],
-        datasets: [{
-            label: '# of Votes',
-            data: [20, 5, 80],
-            backgroundColor: [
-                'rgba(127, 127, 255, 255)',
-                'rgba(191, 191, 191, 255)',
-            ],
-            borderColor: [
-                'rgba(127, 127, 255, 255)',
-                'rgba(191, 191, 191, 255)',
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-    	title: {
-            display: true,
-            text: 'Liberals Who Felt This Was a Liberal Article',
-        },
+// var ctx = document.getElementById("myChart").getContext('2d');
+// var myDoughnutChart = new Chart(ctx, {
+//     type: 'doughnut',
+//     data: {
+//         labels: ["Votes", "All Liberals"],
+//         datasets: [{
+//             label: '# of Votes',
+//             data: [20, 5, 80],
+//             backgroundColor: [
+//                 'rgba(127, 127, 255, 255)',
+//                 'rgba(191, 191, 191, 255)',
+//             ],
+//             borderColor: [
+//                 'rgba(127, 127, 255, 255)',
+//                 'rgba(191, 191, 191, 255)',
+//             ],
+//             borderWidth: 1
+//         }]
+//     },
+//     options: {
+//     	title: {
+//             display: true,
+//             text: 'Liberals Who Felt This Was a Liberal Article',
+//         },
+//     }
+// });
+// 	//CHART END---------------------------------------------------
+
+// 	function addData() {
+// 		myDoughnutChart.data.datasets[0].data[0] = 50;
+// 		myDoughnutChart.update();
+// 	};
+
+// 	$('button').click(addData);
+
+var vote1= 10;
+var vote2 = 20;
+var vote3 = 56;
+
+var config = {
+  type: 'doughnut',
+  data: {
+    datasets: [
+     /* Outer doughnut data starts*/
+    {
+      data: [
+        vote1,
+        vote2,
+        vote3
+      ],
+      backgroundColor: [
+        'rgba(127, 127, 255, 255)',
+		'rgba(255, 0, 0, 255)',
+		'rgba(211, 211, 211, 255)'
+      ],
+      label: 'Doughnut 1'
     }
-});
-	//CHART END---------------------------------------------------
+    /* Outer doughnut data ends*/
+    ],
+    labels: [
+      "Liberal",
+      "Conservative",
+      "Moderdate"
+    ]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'Chart.js Doughnut Chart'
+    },
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    }
+  }
+};
+window.onload = function() {
+  var ctx = document.getElementById("myChart")
+    .getContext("2d");
+  window.myDoughnut = new Chart(ctx, config);
+};
 
-	function addData() {
-		myDoughnutChart.data.datasets[0].data[0] = 50;
-		myDoughnutChart.update();
-	};
+ var randomScalingFactor = function() {
+        return Math.round(Math.random() * 100);
+    };
+    document.getElementById('addDataset').addEventListener('click', function() {
+        var newDataset = {
+            backgroundColor: [
 
-	$('button').click(addData);
+        'rgba(127, 127, 255, 255)',
+		'rgba(255, 0, 0, 255)',
+		'rgba(211, 211, 211, 255)'],
+            data: [],
+            label: 'New dataset ' + config.data.datasets.length,
+        };
 
+        for (var index = 0; index < config.data.labels.length; ++index) {
+            newDataset.data.push(randomScalingFactor());
+        }
 
+        config.data.datasets.push(newDataset);
+        window.myDoughnut.update();
+    });
 //----------------------------------------------------------------END OF SCRIPT	
 });
 </script>

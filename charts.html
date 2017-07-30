@@ -83,7 +83,7 @@
 $(document).ready(function() {
 
 			//CHART ---------------------------------------------------
-		var ctx = document.getElementById("myChart").getContext('2d');
+		var ctx = document.getElementById("chart1").getContext('2d');
 		var myDoughnutChart = new Chart(ctx, {
 		    type: 'doughnut',
 		    data: {
@@ -167,7 +167,7 @@ $(document).ready(function() {
             label: 'Conservative Data',
         };
 
-        myDoughnutChart.data.datasets.push(newDataset);//push new data to chart's dataset
+        myDoughnutChart.data.datasets.liberal.push(newDataset);//push new data to chart's dataset
         myDoughnutChart.update();//update chart
 	};
 
@@ -182,7 +182,7 @@ $(document).ready(function() {
             label: 'Centrist Data',
         };
 
-        myDoughnutChart.data.datasets.push(newDataset);//push new data to chart's dataset
+        myDoughnutChart.data.datasets.neutral.push(newDataset);//push new data to chart's dataset
         myDoughnutChart.update();//update chart
 	};
 
