@@ -93,45 +93,6 @@ body {
 	text-align: center;
 }
 
-.likert {
-	list-style: none;
-	width: 100%;
-	margin: 0;
-	padding: 0 0 35px;
-	display: block;
-	font-family: 'Raleway', sans-serif;
-}
-
-form .likert:before {
-	content: '';
-	position: relative;
-	top: 15px;
-	left: 10%;
-	display: block;
-	background: #efefef;
-	height: 4px;
-	width: 78%;
-}
-
-.likert li {
-	display: inline-block;
-	width: 19%;
-	text-align: center;
-	vertical-align: top;
-}
-
-.likert li input[type=radio] {
-	display: block;
-	position: relative;
-	top: 0;
-	left: 50%;
-	margin-left: -6px;
-}
-
-.likert li label {
-	width: 100%;
-}
-
 form .buttons {
 	margin: 30px 0;
 	padding:0 4.25%;
@@ -196,4 +157,22 @@ form .buttons button {
 	font-family: 'Merriweather', serif;
 	background-color: white;
 }
+
+/* loading animation CSS */
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    animation: spin 2s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* loading animation CSS end ---------------- */
 

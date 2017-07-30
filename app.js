@@ -58,13 +58,15 @@ function renderQuestionButtons(){
 	});
 };
 
-renderModal();
-renderButtons();
-$('#likertScale').hide();
-$(".question2-buttons").hide();
-
 $('body').on('click','.idea', function(){
-	$('.mainArticle').show(200);//load div that contains article
+	$('.loader').show();//show loader animation
+	setTimeout(function() {
+		  $(".loader").hide();//hide loader animation after 2 seconds
+		  $('.finishedReadingButton').show();//shw finished reading button,
+		}, 2000);
+
+	$('.mainArticle').show();//load div that contains article
+	$('.articleText').show(5000);//load article, create delay for ajax calls, loading animation will show in mean time
 	$(".choose").remove();
 	$(".idea").detach();
 });
@@ -89,6 +91,9 @@ $('body').on('mouseout','.idea', 1000, function(){
 });
 
 //------------------------
+
+//hover effect on finished reading button ------
+
 $('body').on('mouseenter','.finishedReadingButton', 1000, function(){
 	$(this).animate({
         width: "110px",
@@ -106,6 +111,8 @@ $('body').on('mouseout','.finishedReadingButton', 1000, function(){
     });
 });
 
+//------------------------
+
 $('.finishedReadingButton').click(function (){//when the finished reading button is clicked
 	$('#articleText').hide(200);//hide three idea bubbles
 	$(".questionTitle").show();//show 'What is, in your opinion, the tone of this article?' text
@@ -118,13 +125,16 @@ $(".question2-buttons").click(function() {
 	$(".question2-buttons").empty();
 	$(".questionTitle").hide();//hide 'What is, in your opinion, the tone of this article?' text
 	$(".question2-buttons").hide();
-	$("#likertScale").hide();
 	$("#articleText").show();
 	$(".finishedReadingButton").show();
 });
 
 
+renderModal();
+renderButtons();
 
+$(".question2-buttons").hide();
+$(".finishedReadingButton").hide();
 
 
 
