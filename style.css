@@ -24,7 +24,7 @@ body {
 }
 
 .navbar {
-	height: 75px;
+	height: auto;
 }
 
 .mainArticle {
@@ -147,7 +147,7 @@ form .buttons button {
 
 /* charts.html CSS */
 
-#myChartWrap {
+#chart1Wrap, #chart2Wrap, #chart3Wrap {
 	width: 400px;
 	height: auto;
 	margin-bottom: 10px;
@@ -156,10 +156,12 @@ form .buttons button {
 .chartBox {
 	box-shadow: 5px 5px 15px #888888;
 	padding: 20px;
+	margin-bottom: 50px;
 	line-height: 35px;
 	font-size: 16px;
 	font-family: 'Merriweather', serif;
 	background-color: white;
+	min-width: 500px;
 }
 
 /* loading animation CSS */

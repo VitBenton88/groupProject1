@@ -127,6 +127,7 @@ $('.finishedReadingButton').click(function (){//when the finished reading button
 	if (clickCounter === 2) {
 		$(".finishedReadingButton").empty();
 		$(".finishedReadingButton").append("<a href='charts.html'>Finsished <br> Reading</a>");
+		clickCounter = 0;
 	};
 });
 
