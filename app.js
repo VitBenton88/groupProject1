@@ -112,6 +112,7 @@ $('body').on('mouseout','.finishedReadingButton', 1000, function(){
 });
 
 //------------------------
+var clickCounter = 0;
 
 $('.finishedReadingButton').click(function (){//when the finished reading button is clicked
 	$('#articleText').hide(200);//hide three idea bubbles
@@ -119,6 +120,14 @@ $('.finishedReadingButton').click(function (){//when the finished reading button
 	$('.finishedReadingButton').hide();
 	$('#likertScale').show();
 	renderQuestionButtons();
+
+	clickCounter++;
+	console.log(clickCounter);
+
+	if (clickCounter === 2) {
+		$(".finishedReadingButton").empty();
+		$(".finishedReadingButton").append("<a href='charts.html'>Finsished <br> Reading</a>");
+	};
 });
 
 $(".question2-buttons").click(function() {
