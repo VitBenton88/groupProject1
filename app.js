@@ -106,29 +106,64 @@ $('body').on('mouseout','.finishedReadingButton', 1000, function(){
     });
 });
 
-$('.finishedReadingButton').click(function (){//when the finished reading button is clicked
-	$('#articleText').hide(200);//hide three idea bubbles
-	$(".questionTitle").show();//show 'What is, in your opinion, the tone of this article?' text
-	$('.finishedReadingButton').hide();
-	$('#likertScale').show();
-	renderQuestionButtons();
+$('.finishedReadingButton').click(function (){//when the finished reading button is clicked  
+    $('.articleText').hide();//hide three idea bubbles
+    $(".questionTitle").show();//show 'What is, in your opinion, the tone of this article?' text
+    $('.finishedReadingButton').hide();
+    $('#likertScale').show();
+    renderQuestionButtons();
 });
 
-$(".question2-buttons").click(function() {
-	$(".question2-buttons").empty();
-	$(".questionTitle").hide();//hide 'What is, in your opinion, the tone of this article?' text
-	
-	$("#likertScale").hide();
-	$("#articleText").show();
-	$(".finishedReadingButton").show();
+$("body").on("click", ".question2-answer",function() {
+
+  updateDatabaseWithVotes($(this).attr("id"),clickCounter,currentPoliticalAffiliation);
+    clickCounter++;
+  if (clickCounter < 3) {
+
+    console.log(clickCounter);
+    $(".question2-buttons").empty();
+    $(".questionTitle").hide();//hide 'What is, in your opinion, the tone of this article?' text
+    $(".question2-buttons").hide();
+    $(".articleText").text(articleArray[clickCounter].article);
+    $(".articleText").show();
+    $(".finishedReadingButton").show();
+  } 
+  else {
+    var counterforTest = 0;
+      articleArray.forEach(function(element){
+          options.forEach(function(q,y,z){
+            counterforTest++;
+         console.log("counterforTest is : "+counterforTest);
+        var format = ("x" + currentPoliticalAffiliation.charAt(0) + q);
+        var re = new RegExp(format,"g");
+        var arrayToDeriveValueFrom  = (rootDirectory["publicationList"][element.source]["stringOfVotes"]["totalString"]).match(re);
+        console.log(arrayToDeriveValueFrom);
+
+        if(arrayToDeriveValueFrom === null){
+          chartArray.push(0);
+        console.log(chartArray);
+        }else {
+          chartArray.push(arrayToDeriveValueFrom.length);
+          console.log(chartArray);
+        }
+            
+            });
+      });
+      Article1ConservativeVote = chartArray[0];
+      Article1LiberalVote = chartArray[1];
+      Article1NeutralVote = chartArray[2];
+      Article2ConservativeVote = chartArray[3];
+      Article2LiberalVote = chartArray[4];
+      Article2NeutralVote = chartArray[5];
+      Article3ConservativeVote = chartArray[6];
+      Article3LiberalVote = chartArray[7];
+      Article3NeutralVote = chartArray[8];
+
+      $(".question2-buttons").empty();
+      $(".questionTitle").hide();//hide 'What is, in your opinion, the tone of this article?' text
+      chartsToShow();
+  };
+  
 });
-
-
-
-
-
-
-
-
 
 //----------------------------------------------------------------END OF SCRIPT	
