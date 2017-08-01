@@ -1,20 +1,6 @@
-  // Initialize Firebase
-	var config = {
-	apiKey: "AIzaSyCgFLqC-UD_Y_hOXIgktmVzEz-R-gg7Tyo",
-	authDomain: "groupproject1-e44d0.firebaseapp.com",
-	databaseURL: "https://groupproject1-e44d0.firebaseio.com",
-	projectId: "groupproject1-e44d0",
-	storageBucket: "groupproject1-e44d0.appspot.com",
-	messagingSenderId: "1040093366150"
-	};
-	firebase.initializeApp(config);
-
-	var database = firebase.database();
-
-//---------FIREBASE END ---------------
-
-
 var ideologies = ["Liberal", "Moderate", "Conservative"];
+
+var clickCounter = 0;
 
 function renderButtons() {
 	$(".button-container").empty()
@@ -59,16 +45,17 @@ function renderQuestionButtons(){
 };
 
 $('body').on('click','.idea', function(){
-	$('.loader').show();//show loader animation
-	setTimeout(function() {
-		  $(".loader").hide();//hide loader animation after 2 seconds
-		  $('.finishedReadingButton').show();//shw finished reading button,
-		}, 2000);
 
-	$('.mainArticle').show();//load div that contains article
-	$('.articleText').show(5000);//load article, create delay for ajax calls, loading animation will show in mean time
-	$(".choose").remove();
-	$(".idea").detach();
+		$('.loader').show();//show loader animation
+		setTimeout(function() {
+			  $(".loader").hide();//hide loader animation after 2 seconds
+			  $('.finishedReadingButton').show();//shw finished reading button,
+			}, 2000);
+
+		$('.mainArticle').show();//load div that contains article
+		$('.articleText').show(5000);//load article, create delay for ajax calls, loading animation will show in mean time
+		$(".choose").remove();
+		$(".idea").detach();
 });
 
 //hover effect on idea bubbles ------
@@ -112,31 +99,39 @@ $('body').on('mouseout','.finishedReadingButton', 1000, function(){
 });
 
 //------------------------
-var clickCounter = 0;
 
 $('.finishedReadingButton').click(function (){//when the finished reading button is clicked
-	$('#articleText').hide(200);//hide three idea bubbles
-	$(".questionTitle").show();//show 'What is, in your opinion, the tone of this article?' text
-	$('.finishedReadingButton').hide();
-	$('#likertScale').show();
-	renderQuestionButtons();
-
-	clickCounter++;
-	console.log(clickCounter);
-
-	if (clickCounter === 2) {
-		$(".finishedReadingButton").empty();
-		$(".finishedReadingButton").append("<a href='charts.html'>Finsished <br> Reading</a>");
-		clickCounter = 0;
-	};
+	
+		$('#articleText').hide(200);//hide three idea bubbles
+		$(".questionTitle").show();//show 'What is, in your opinion, the tone of this article?' text
+		$('.finishedReadingButton').hide();
+		$('#likertScale').show();
+		renderQuestionButtons();
 });
 
 $(".question2-buttons").click(function() {
-	$(".question2-buttons").empty();
-	$(".questionTitle").hide();//hide 'What is, in your opinion, the tone of this article?' text
-	$(".question2-buttons").hide();
-	$("#articleText").show();
-	$(".finishedReadingButton").show();
+
+	if (clickCounter < 3) {
+
+		clickCounter++;
+		console.log(clickCounter);
+
+		$(".question2-buttons").empty();
+		$(".questionTitle").hide();//hide 'What is, in your opinion, the tone of this article?' text
+		$(".question2-buttons").hide();
+		$("#articleText").show();
+		$(".finishedReadingButton").show();
+
+	}	
+
+	else {
+
+		  $(".question2-buttons").empty();
+		  $(".questionTitle").hide();//hide 'What is, in your opinion, the tone of this article?' text
+		  $('.chartBox').show();
+
+		  clickCounter = 0;
+	};
 });
 
 
@@ -146,6 +141,160 @@ renderButtons();
 $(".question2-buttons").hide();
 $(".finishedReadingButton").hide();
 
+//CHART ---------------------------------------------------
 
+var Article1ConservativeVote= 10;
+var Article1LibralVote = 10;
+var Article1NeutralVote = 10;
 
-//----------------------------------------------------------------END OF SCRIPT	
+var Article2ConservativeVote= 10;
+var Article2LibralVote = 10;
+var Article2NeutralVote = 10;
+
+var Article3ConservativeVote= 10;
+var Article3LibralVote = 10;
+var Article3NeutralVote = 10;
+
+var config1 = {
+  type: 'doughnut',
+  data: {
+    datasets: [
+     /* Outer doughnut data starts*/
+    {
+      data: [
+        Article1ConservativeVote,
+        Article1LibralVote,
+        Article1NeutralVote,
+      ],
+      backgroundColor: [
+    'rgba(127, 127, 255, 255)',
+		'rgba(255, 0, 0, 255)',
+		'rgba(211, 211, 211, 255)'
+      ],
+      label: 'Doughnut 1'
+    }
+    /* Outer doughnut data ends*/
+    ],
+    labels: [
+      "Liberal",
+      "Conservative",
+      "Moderdate"
+    ]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'First Article'
+    },
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    }
+  }
+};
+
+var config2 = {
+  type: 'doughnut',
+  data: {
+    datasets: [
+     /* Outer doughnut data starts*/
+    {
+      data: [
+        Article2ConservativeVote,
+        Article2LibralVote,
+        Article2NeutralVote,
+      ],
+      backgroundColor: [
+    'rgba(127, 127, 255, 255)',
+		'rgba(255, 0, 0, 255)',
+		'rgba(211, 211, 211, 255)'
+      ],
+      label: 'Doughnut 1'
+    }
+    /* Outer doughnut data ends*/
+    ],
+    labels: [
+      "Liberal",
+      "Conservative",
+      "Moderdate"
+    ]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'Second Article'
+    },
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    }
+  }
+};
+
+var config3 = {
+  type: 'doughnut',
+  data: {
+    datasets: [
+     /* Outer doughnut data starts*/
+    {
+      data: [
+        Article3ConservativeVote,
+        Article3LibralVote,
+        Article3NeutralVote,
+      ],
+      backgroundColor: [
+    'rgba(127, 127, 255, 255)',
+		'rgba(255, 0, 0, 255)',
+		'rgba(211, 211, 211, 255)'
+      ],
+      label: 'Doughnut 1'
+    }
+    /* Outer doughnut data ends*/
+    ],
+    labels: [
+      "Liberal",
+      "Conservative",
+      "Moderdate"
+    ]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'Third Article'
+    },
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    }
+  }
+};
+
+function renderCharts(){
+	  var ctx1 = document.getElementById("chart1")
+	    .getContext("2d");
+	  window.myDoughnut = new Chart(ctx1, config1);
+
+	  var ctx2 = document.getElementById("chart2")
+	    .getContext("2d");
+	  window.myDoughnut = new Chart(ctx2, config2);
+
+	  var ctx3 = document.getElementById("chart3")
+	    .getContext("2d");
+	  window.myDoughnut = new Chart(ctx3, config3);
+};
+
+renderCharts();
+
+//-------------------------END OF SCRIPT	
