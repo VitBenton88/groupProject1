@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AJAX CALL TEST</title>
+</head>
+<!--JQUERY -->
+	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<body>
+
+	<button id="breitbart">Breitbart AJAX CALL</button>
+
+	<button id="bloomberg">Bloomberg AJAX CALL</button>
+
+	<p id="breitbartNews"></p>
+
+	<p id="bloombergNews"></p>
+
+
+	<script>
+		
+	$('#breitbart').on('click',function(){
+
+		var queryURL = "https://newsapi.org/v1/articles?source=breitbart-news&q=politics&sortBy=top&apiKey=91492737bdd74049a041302439cd348f";
+
+		$.ajax({//jquery ajax method
+	      	url: queryURL,//push previously stored API url
+	      	method: "GET"
+	    	}).done(function(response) {
+
+	    			$('#breitbartNews').empty();
+
+	    			var randNum = Math.floor(Math.random() * 10) + 0
+
+	    			var currentArticle = response.articles[randNum].description;
+
+	      			$('#breitbartNews').html(currentArticle);
+	      		});
+	});
+
+
+	$('#bloomberg').on('click',function(){
+
+		var queryURL = "https://newsapi.org/v1/articles?source=bloomberg&q=politics&sortBy=top&apiKey=91492737bdd74049a041302439cd348f";
+
+		$.ajax({//jquery ajax method
+	      	url: queryURL,//push previously stored API url
+	      	method: "GET"
+	    	}).done(function(response) {
+
+	    			$('#bloombergNews').empty();
+
+	    			var randNum = Math.floor(Math.random() * 10) + 0
+
+	    			var currentArticle = response.articles[randNum].description;
+
+	      			$('#bloombergNews').html(currentArticle);
+	      		});
+	});
+	</script>
+
+</body>
+</html>
