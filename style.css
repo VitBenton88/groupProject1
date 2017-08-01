@@ -149,7 +149,7 @@ form .buttons button {
 /* charts.html CSS */
 
 #chart1Wrap, #chart2Wrap, #chart3Wrap {
-	width: 400px;
+	width: auto;
 	height: auto;
 	margin-bottom: 10px;
 }
@@ -160,8 +160,13 @@ form .buttons button {
 	font-size: 16px;
 	font-family: 'Merriweather', serif;
 	background-color: white;
-	min-width: 500px;
+	min-width: 300px;
 	display: none;
+}
+
+canvas {
+	width: 300px;
+	height: 300px;
 }
 
 /* loading animation CSS */
