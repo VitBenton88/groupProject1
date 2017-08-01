@@ -1,123 +1,117 @@
-$(document).ready(function() {
+var publications;
+var articleArray;
+var database;
+var config;
+var rootDirectory;
+var totalAmountOfVotesLocal;
+var updateDatabaseWithVotes;
+var status = 0;
+var currentPoliticalAffiliation;
 
+   function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
 
-	var config = {
-	apiKey: "AIzaSyCgFLqC-UD_Y_hOXIgktmVzEz-R-gg7Tyo",
-	authDomain: "groupproject1-e44d0.firebaseapp.com",
-	databaseURL: "https://groupproject1-e44d0.firebaseio.com",
-	projectId: "groupproject1-e44d0",
-	storageBucket: "groupproject1-e44d0.appspot.com",
-	messagingSenderId: "1040093366150"
-	};
-	firebase.initializeApp(config);
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
 
-	var database = firebase.database();
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
 
-//---------FIREBASE END ---------------
-//testforMatch.match(/c.\d/g)
-var publications ={
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+	config = {
+    apiKey: "AIzaSyBdlPBOr8SPQx1iKMUjG04VmAJruAZqe-g",
+    authDomain: "testforarticle-f7b87.firebaseapp.com",
+    databaseURL: "https://testforarticle-f7b87.firebaseio.com",
+    projectId: "testforarticle-f7b87",
+    storageBucket: "",
+    messagingSenderId: "800311663549"
+  };
+  firebase.initializeApp(config);
+  database = firebase.database();
+  articleArray = [];
+      
+      database.ref().on("value", function(snap) {
+        rootDirectory = snap.val();
+        totalAmountOfVotesLocal = rootDirectory["totalVotes"]["totalAmountOfVotes"];
+    }, function(errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });      
+  updateDatabaseWithVotes = function (rating,indexOfTheArticle,currentPoliticalAffiliation){
+
+          var vote = rating.charAt(0);
+
+    			var currentArticle = articleArray[indexOfTheArticle];     
+ 
+				totalAmountOfVotesLocal++;
+				var updatedValue = (rootDirectory["publicationList"][currentArticle.source]["stringOfVotes"]["totalString"])+=("x"+currentPoliticalAffiliation + vote);
+
+				database.ref("publicationList/"+currentArticle.source+"/"+"stringOfVotes").set({
+				totalString : updatedValue
+						});
+
+    			database.ref("totalVotes").set({
+				totalAmountOfVotes : totalAmountOfVotesLocal
+						});
+		};
+
+publications ={
 	conservative :[{
-	name: "The New York Times",
-	apiKey: 'e602416e1df44091b3750704a4b7f198',
-	article: '',
-	ajaxCall: function(searchQuery,subset){
-		return ('https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=e602416e1df44091b3750704a4b7f198&q=' + searchQuery+"&fq="+subset);
+	name: "Breitbart",
+	ajaxCall: function(){
+		$.ajax({//jquery ajax method
+      	url: 'https://newsapi.org/v1/articles?source=breitbart-news&sortBy=top&apiKey=91492737bdd74049a041302439cd348f',
+      	method: "GET"
+    	}).done(function(result) {
+    		var input = result.articles[1]['description'];
+    		articleArray.push({article:input, source:"Breitbart", id: (input.substr(0,Math.floor(input.length)/8))+input.substr(-2) + input.length});
+    		status++;
+    		publications.moderate[randomnumber2].ajaxCall();
+    	});
 	},
-	ajaxDoneFunctionFormat: function(jsonOb){
-		return jsonOb.docs[0].mainArticle
-	}
-
 	}],
-	neutral :[{
+	moderate :[{
 	name: "The New York Times",
 	apiKey: 'e602416e1df44091b3750704a4b7f198',
-	article: '',
-	ajaxCall: function(searchQuery,subset){
-		return ('https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=e602416e1df44091b3750704a4b7f198&q=' + searchQuery+"&fq="+subset);
+	ajaxCall: function(){
+		$.ajax({//jquery ajax method
+      	url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=e602416e1df44091b3750704a4b7f198&q=bannon',
+      	method: "GET"
+    	}).done(function(result) {
+    		var input = result.response["docs"][0]["lead_paragraph"];
+    		articleArray.push({article:input, source:"The New York Times",id: (input.substr(0,Math.floor(input.length)/8)) +input.substr(-2) + input.length});
+    		  status++;
+			  publications.liberal[randomnumber3].ajaxCall();
+    	});
 	},
-	ajaxDoneFunctionFormat: function(jsonOb){
-		return jsonOb.//path represented here
-	}
 	}],
 	liberal :[{
-	name: "The New York Times",
-	apiKey: 'e602416e1df44091b3750704a4b7f198',
-	article: '',
-	ajaxCall: function(searchQuery,subset){
-		return ('https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=e602416e1df44091b3750704a4b7f198&q=' + searchQuery+"&fq="+subset);
+	name: "The Guardian",
+	ajaxCall: function(){
+		$.ajax({//jquery ajax method
+      	url: 'https://content.guardianapis.com/search?q=politics&show-fields=starRating,headline,thumbnail,short-url&api-key=cdf1da10-7ac7-4307-aa12-78c7ff616e29',
+      	method: "GET"
+    	}).done(function(result) {
+    		var input = result.response.results[0]["webTitle"];
+    		articleArray.push({article:input, source:"The Guardian", id: (input.substr(0,Math.floor(input.length)/8)) + input.substr(-2) + input.length});
+    		status++;
+        articleArray = shuffle(articleArray);
+        console.log(articleArray);
+    	});
 	},
-	ajaxDoneFunctionFormat: function(jsonOb){
-		return jsonOb.docs[0].lead_paragraph
-	}
-
 	}]
 
 };
-
+var randomnumber1 = Math.floor(Math.random()*publications.conservative.length);
+var randomnumber2 = Math.floor(Math.random()*publications.moderate.length);
+var randomnumber3 = Math.floor(Math.random()*publications.liberal.length);
 //testforMatch.match(/c.\d/g)
-
-//some ajax call that provides you with 
-var publications ={
-totalVotes : 0;
-publicationList:{
-"the New York Times" :{
-	source: "The New York Times",
-	stringOfVotes : "cl4ln3"
-	},
-	id : {"01/23/2014fwr":{
-		stringOfVotes : ""
-	}
-}
-}
-}
-
-};
-var randomnumber1= Math.floor(Math.random()*publications.conservative.length)
-var randomnumber2= Math.floor(Math.random()*publications.neutral.length)
-var randomnumber3= Math.floor(Math.random()*publications.liberal.length)
-var articleArray = [];
-
-		$.ajax({//jquery ajax method
-      	url: publications.conservative[randomnumber1].ajaxCall("politics"),//push previously stored API url
-      	method: "GET"
-    	}).done(function(result) {
-    		articleArray.push(publications.conservative[randomnumber1].ajaxDoneFunctionFormat(result));
-    	});
-    	$.ajax({//jquery ajax method
-      	url: publications.neutral[randomnumber2].ajaxCall("politics"),//push previously stored API url
-      	method: "GET"
-    	}).done(function(result) {
-    		articleArray.push(publications.neutral[randomnumber1].ajaxDoneFunctionFormat(result));
-    	});
-    	$.ajax({//jquery ajax method
-      	url: publications.liberal[randomnumber3].ajaxCall("politics"),//push previously stored API url
-      	method: "GET"
-    	}).done(function(result) {
-    		articleArray.push(publications.neutral[randomnumber1].ajaxDoneFunctionFormat(result));
-    	});
-	});
-
-console.log(database.ref('publicationList'))
-	
-
-	//do this if the publication has never been selected	
-		database.ref("publicationList").push({
-		/*sourceSelected*/ :{
-		source: /*sourceSelected*/,
-		stringOfVotes : "x",
-		idList : {
-		/*"pub_date+ headline first+last+middle character"*/:{stringOfVotes : "x"}
-		}
-	}
-});
-	//do this if the article has been selected and publication
-		database.ref("publicationList"+"/"+"name of the source")
-
-
-      //do this if the article hasn't been selected but publication has
-      	database.ref(key).update({
-
-
-      	});
-
+		publications.conservative[randomnumber1].ajaxCall();
 
