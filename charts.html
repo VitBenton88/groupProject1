@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Article Mock</title>
+	<title>Charts</title>
 	<!--BOOTSTRAP CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<!--LOCAL CSS -->
@@ -19,10 +19,12 @@
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false">
 					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="article.html"><img class="logo" src="images/newsLogo.png" alt="NEWS"></a>
 			</div>
-			<div class="collapse navbar-collapse" id="navbarSupportedConent">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="nav navbar-nav">
 					<li class="nav-item">
 						<a class="nav-link" href="#">Learn More</a>
@@ -39,8 +41,27 @@
 			</div>
 		</div>
 
-		
+		<div class="row">
+			<div class="col-lg-offset-2 col-lg-8 chartBox">
 
+				<div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-2" id="chart1Wrap">
+					<div id="publication1"></div>
+					<canvas id="chart1"></canvas>
+				</div>
+
+				<div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-2"  id="chart2Wrap">
+					<div id="publication2"></div>
+					<canvas id="chart2"></canvas>
+				</div>
+
+				<div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-2"  id="chart3Wrap">
+					<div id="publication3"></div>
+					<canvas id="chart3"></canvas>
+				</div>
+
+			</div>
+
+		</div>
 	</div>
 
 	<!--JQUERY -->
@@ -55,5 +76,228 @@
 	<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
 	<!--LOCAL JS -->
 	<script src="app.js"></script>
+	<!--CHART.JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+<script>
+
+$(document).ready(function() {
+
+			//CHART ---------------------------------------------------
+var Article1ConservativeVote= 10;
+var Article1LibralVote = 20;
+var Article1NeutralVote = 56;
+
+var Article2ConservativeVote= 20;
+var Article2LibralVote = 10;
+var Article2NeutralVote = 46;
+
+var Article3ConservativeVote= 22;
+var Article3LibralVote = 5;
+var Article3NeutralVote = 70;
+
+var config1 = {
+  type: 'doughnut',
+  data: {
+    datasets: [
+     /* Outer doughnut data starts*/
+    {
+      data: [
+        Article1ConservativeVote,
+        Article1LibralVote,
+        Article1NeutralVote,
+      ],
+      backgroundColor: [
+    'rgba(127, 127, 255, 255)',
+		'rgba(255, 0, 0, 255)',
+		'rgba(211, 211, 211, 255)'
+      ],
+      label: 'Doughnut 1'
+    }
+    /* Outer doughnut data ends*/
+    ],
+    labels: [
+      "Liberal",
+      "Conservative",
+      "Moderdate"
+    ]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'First Article'
+    },
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    }
+  }
+};
+
+var config2 = {
+  type: 'doughnut',
+  data: {
+    datasets: [
+     /* Outer doughnut data starts*/
+    {
+      data: [
+        Article2ConservativeVote,
+        Article2LibralVote,
+        Article2NeutralVote,
+      ],
+      backgroundColor: [
+    'rgba(127, 127, 255, 255)',
+		'rgba(255, 0, 0, 255)',
+		'rgba(211, 211, 211, 255)'
+      ],
+      label: 'Doughnut 1'
+    }
+    /* Outer doughnut data ends*/
+    ],
+    labels: [
+      "Liberal",
+      "Conservative",
+      "Moderdate"
+    ]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'Second Article'
+    },
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    }
+  }
+};
+
+var config3 = {
+  type: 'doughnut',
+  data: {
+    datasets: [
+     /* Outer doughnut data starts*/
+    {
+      data: [
+        Article3ConservativeVote,
+        Article3LibralVote,
+        Article3NeutralVote,
+      ],
+      backgroundColor: [
+    'rgba(127, 127, 255, 255)',
+		'rgba(255, 0, 0, 255)',
+		'rgba(211, 211, 211, 255)'
+      ],
+      label: 'Doughnut 1'
+    }
+    /* Outer doughnut data ends*/
+    ],
+    labels: [
+      "Liberal",
+      "Conservative",
+      "Moderdate"
+    ]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'Third Article'
+    },
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    }
+  }
+};
+
+window.onload = function() {
+  var ctx = document.getElementById("chart1")
+    .getContext("2d");
+  window.myDoughnut = new Chart(ctx, config1);
+
+  var ctx = document.getElementById("chart2")
+    .getContext("2d");
+  window.myDoughnut = new Chart(ctx, config2);
+
+  var ctx = document.getElementById("chart3")
+    .getContext("2d");
+  window.myDoughnut = new Chart(ctx, config3);
+};
+	//CHART END---------------------------------------------------
+
+	//everything below is not relevant since we're no longer working with embedded datasets :
+	var disableRightWingButton = false;
+	var disableNeutralWingButton = false;
+
+	function addRightWingData() {//adds data representing conservative votes
+		var newDataset = {
+            backgroundColor: [
+                'rgba(127, 127, 255, 255)',
+                'rgba(255, 0, 0, 255)',
+                'rgba(211, 211, 211, 255)',
+            ],
+            data: [10, 30, 50],
+            label: 'Conservative Data',
+        };
+
+        myDoughnutChart.data.datasets.liberal.push(newDataset);//push new data to chart's dataset
+        myDoughnutChart.update();//update chart
+	};
+
+	function addCentristData() {//adds data representing neutral votes
+		var newDataset = {
+            backgroundColor: [
+                'rgba(127, 127, 255, 255)',
+                'rgba(255, 0, 0, 255)',
+                'rgba(211, 211, 211, 255)',
+            ],
+            data: [20, 40, 90],
+            label: 'Centrist Data',
+        };
+
+        myDoughnutChart.data.datasets.neutral.push(newDataset);//push new data to chart's dataset
+        myDoughnutChart.update();//update chart
+	};
+
+	$('#RightWing').click(function(){
+		if (disableRightWingButton === false){
+			addRightWingData();
+			disableRightWingButton = true;
+		}
+
+		else {
+			return;
+		};
+	});
+
+	$('#Centrist').click(function(){
+		if (disableNeutralWingButton === false){
+			addCentristData();
+			disableNeutralWingButton = true;
+		}
+
+		else {
+			return;
+		};
+	});
+
+
+//----------------------------------------------------------------END OF SCRIPT	
+});
+</script>
+
+
 </body>
 </html>

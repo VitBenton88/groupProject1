@@ -69,42 +69,67 @@ var vote3 = 56;
 var config = {
   type: 'doughnut',
   data: {
-    datasets: [
-     /* Outer doughnut data starts*/
-    {
-      data: [
-        vote1,
-        vote2,
-        vote3
-      ],
-      backgroundColor: [
-        'rgba(127, 127, 255, 255)',
-		'rgba(255, 0, 0, 255)',
-		'rgba(211, 211, 211, 255)'
-      ],
-      label: 'Doughnut 1'
-    }
-    /* Outer doughnut data ends*/
-    ],
-    labels: [
-      "Liberal",
-      "Conservative",
-      "Moderdate"
-    ]
+      labels: ["Liberal", "Conservative", "Neutral"],
+      datasets: {
+      //dataset 1:
+        liberal: [{
+          label: '# of Votes',
+          data: [50, 5, 15],
+          backgroundColor: [
+              'rgba(127, 127, 255, 255)',
+              'rgba(255, 0, 0, 255)',
+              'rgba(211, 211, 211, 255)',
+          ],
+
+          borderColor: [
+              'rgba(127, 127, 255, 255)',
+              'rgba(255, 0, 0, 255)',
+              'rgba(211, 211, 211, 255)',
+          ],
+          borderWidth: 1,
+      }],
+          //dataset 2:
+          neutral: [{
+          label: '# of Votes',
+          data: [50, 5, 15],
+          backgroundColor: [
+              'rgba(127, 127, 255, 255)',
+              'rgba(255, 0, 0, 255)',
+              'rgba(211, 211, 211, 255)',
+          ],
+
+          borderColor: [
+              'rgba(127, 127, 255, 255)',
+              'rgba(255, 0, 0, 255)',
+              'rgba(211, 211, 211, 255)',
+          ],
+          borderWidth: 1,
+      }],
+          //dataset 3:
+          conservative: [{
+          label: '# of Votes',
+          data: [50, 5, 15],
+          backgroundColor: [
+              'rgba(127, 127, 255, 255)',
+              'rgba(255, 0, 0, 255)',
+              'rgba(211, 211, 211, 255)',
+          ],
+
+          borderColor: [
+              'rgba(127, 127, 255, 255)',
+              'rgba(255, 0, 0, 255)',
+              'rgba(211, 211, 211, 255)',
+          ],
+          borderWidth: 1,
+
+      }]
+    },
   },
   options: {
-    responsive: true,
-    legend: {
-      position: 'top',
-    },
     title: {
-      display: true,
-      text: 'Chart.js Doughnut Chart'
-    },
-    animation: {
-      animateScale: true,
-      animateRotate: true
-    }
+          display: true,
+          text: 'Liberals Felt This Article Are Is ...',
+      },
   }
 };
 window.onload = function() {

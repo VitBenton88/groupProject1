@@ -16,9 +16,16 @@ body {
 
 .nav-link {
 	font-size: 20px;
-	margin-top: 25px;
+	margin-top: 20px;
 }
 
+.nav-item {
+	background-color: #F8F8F8;
+}
+
+.navbar {
+	height: auto;
+}
 
 .mainArticle {
 	box-shadow: 5px 5px 15px #888888;
@@ -29,14 +36,15 @@ body {
 	font-family: 'Merriweather', serif;
 	background-color: white;
 	min-height: 500px;
+	margin-bottom: 20px;
 }
 
 .finishedReadingButton {
 	font-family: 'Raleway', sans-serif;
-	background-color: #efefef;
+	background-color: #7a7a7a;
 	width: 100px;
 	height: 100px;
-	color: black;
+	color: #FFFFFF;
 	border: none;
 	border-radius: 50%;
 
@@ -69,6 +77,7 @@ body {
 #moderate {
 	color: #FFFFFF;
 	font-size: 30px;
+	background-color: #7a7a7a;
 }
 
 #conservative {
@@ -88,45 +97,6 @@ body {
 	margin-bottom: 20px;
 	font-family: 'Raleway', sans-serif;
 	text-align: center;
-}
-
-.likert {
-	list-style: none;
-	width: 100%;
-	margin: 0;
-	padding: 0 0 35px;
-	display: block;
-	font-family: 'Raleway', sans-serif;
-}
-
-form .likert:before {
-	content: '';
-	position: relative;
-	top: 15px;
-	left: 10%;
-	display: block;
-	background: #efefef;
-	height: 4px;
-	width: 78%;
-}
-
-.likert li {
-	display: inline-block;
-	width: 19%;
-	text-align: center;
-	vertical-align: top;
-}
-
-.likert li input[type=radio] {
-	display: block;
-	position: relative;
-	top: 0;
-	left: 50%;
-	margin-left: -6px;
-}
-
-.likert li label {
-	width: 100%;
 }
 
 form .buttons {
@@ -169,6 +139,7 @@ form .buttons button {
 #moderate-lean {
 	color: #FFFFFF;
 	font-size: 20px;
+	background-color: #7a7a7a;
 }
 
 #conservative-lean {
@@ -222,6 +193,7 @@ a {
 }
 /* loading animation CSS end ---------------- */
 
+<<<<<<< HEAD
 .results {
 	font-family: 'Raleway', sans-serif;
 	background-color: #efefef;
@@ -233,3 +205,5 @@ a {
 	text-decoration: none;
 
 }
+=======
+>>>>>>> master
