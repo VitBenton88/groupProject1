@@ -66,7 +66,7 @@ $('body').on('click','.idea', function(){
       $('.articleText').text(articleArray[clickCounter].article);
       $('.articleText').fadeIn(2000);//load article, create delay for ajax calls, loading animation will show in mean time
         $(".loader").hide();//hide loader animation after 2 seconds
-        $('.finishedReadingButton').show(7000);//shw finished reading button,
+        $('.finishedReadingButton').show(7000);//sh0w finished reading button,
       }, 300);
 
 });
@@ -106,7 +106,7 @@ $('body').on('mouseout','.finishedReadingButton', 1000, function(){
   $(this).animate({
         width: "100px",
         height: "100px",
-        color: "black",
+        color: "white",
 
     });
 });
