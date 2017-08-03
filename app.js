@@ -218,8 +218,8 @@ var config1 = {
     },
     title: {
       display: true,
-      text: 'First Article'
-    },
+      text: "Article 1 | Source: NY Times | Author: Donald Trump | Title: 'End of the World'"
+     },
     animation: {
       animateScale: true,
       animateRotate: true
