@@ -85,7 +85,7 @@ publications ={
       	url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=e602416e1df44091b3750704a4b7f198&q=bannon',
       	method: "GET"
     	}).done(function(result) {
-    		var input = result.response["docs"][0]["lead_paragraph"];
+    		var input = result.response["docs"][0]["snippet"];
     		articleArray.push({article:input, source:"The New York Times",id: (input.substr(0,Math.floor(input.length)/8)) +input.substr(-2) + input.length});
     		  status++;
 			  publications.liberal[randomnumber3].ajaxCall();
