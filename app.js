@@ -218,7 +218,7 @@ var config1 = {
     },
     title: {
       display: true,
-      text: "Article 1 | Source: NY Times | Author: Donald Trump | Title: 'End of the World'"
+      text: "Article 1 | Source: Breitbart"
      },
     animation: {
       animateScale: true,
@@ -260,7 +260,7 @@ var config2 = {
     },
     title: {
       display: true,
-      text: 'Second Article'
+      text: 'Article 2 | Source: NY Times'
     },
     animation: {
       animateScale: true,
@@ -302,7 +302,7 @@ var config3 = {
     },
     title: {
       display: true,
-      text: 'Third Article'
+      text: 'Article 3 | Source: The Guardian'
     },
     animation: {
       animateScale: true,
